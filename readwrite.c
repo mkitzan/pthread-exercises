@@ -42,7 +42,7 @@ void *write_thread(void *arg) {
         pthread_mutex_lock(&m);
         
         wrts++;
-        while(act_wrts == 0 && rdrs != 0) pthread_cond_wait(&access_wrt, &m);
+        while(act_wrts != 0 && rdrs != 0) pthread_cond_wait(&access_wrt, &m);
         act_wrts++;
         
         pthread_mutex_unlock(&m);
